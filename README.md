@@ -65,9 +65,9 @@ It is very importatnt to note the major change in
 
 
 
-To pass values from `<your-js-file>.js` to `server.R` you would have to write something like this,
+To pass values from `your-js-file.js` to `server.R` you would have to write something like this,
 
-<your-js-file>.js
+your-js-file.js
 ```
 Shiny.onInputChange('variable_in_R', local_variable);
 ```
@@ -87,7 +87,7 @@ This will allow you to get all the user information like
 	* Email
 	* Role
 
-The `<your-js-file>.js` should include the following,
+The `your-js-file.js` should include the following,
 ```
 BSVE.init(function()
 {
@@ -100,7 +100,7 @@ BSVE.init(function()
 ## Harbinger Authentication Ticket
 This will allow you to connect with the BSVE Data API using user authentication details.
 
-The `<your-js-file>.js` should include the following,
+The `your-js-file.js` should include the following,
 ```
 BSVE.init(function()
 {
@@ -113,7 +113,7 @@ BSVE.init(function()
 ## Dossier Control
 You can add the Dossier Bar in your R Shiny app. For further references refer [here](http://developer.bsvecosystem.net/wp/tutorials/adding-the-dossier-bar/)
 
-The `<your-js-file>.js` should include the following,
+The `your-js-file.js` should include the following,
 ```
 BSVE.init(function()
 {
@@ -154,7 +154,7 @@ BSVE.init(function()
 ## Federated Search
 This allows you to perform a search within your app.
 
-The `<your-js-file>.js` should include the following,
+The `your-js-file.js` should include the following,
 ```
 BSVE.init(function()
 {
