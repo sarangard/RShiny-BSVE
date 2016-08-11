@@ -12,7 +12,7 @@ The `.config` file for the RShiny app will have to include the following,
 	* 
 
 ## How to use in R Shiny
-* Using API Access Keys
+#### Using API Access Keys
 This allows you to connect to the BSVE Data API with a developer account.
 You will need to get the API and Secret Keys from the developer site  under My Account -> Manage API Credentials and replace them below. Further details can be found [here](http://developer.bsvecosystem.net/wp/tutorials/api-documentation/)
 
@@ -34,7 +34,7 @@ query_url <- ""
 GET(query_url, add_headers("harbinger-authentication" = token))
 ```
 
-* Using Harbinger Authentication Ticket
+#### Using Harbinger Authentication Ticket
 This allows you to connect to the BSVE Data API with User Credentials.
 You will need to pass the Authentication Ticket received from the BSVE.
 
@@ -43,15 +43,15 @@ query_url <- ""
 GET(query_url, add_headers("harbinger-auth-ticket" = ticket))
 ```
 
-* Listing Data Sources 
+#### Listing Data Sources 
 	* old api
 	* new api
 
-* Listing Data Source Types
+#### Listing Data Source Types
 	* old api
 	* new api
 
-* Data Sources
+#### Data Sources
 	* old api
 	* new api
 	
