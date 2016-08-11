@@ -67,12 +67,12 @@ It is very importatnt to note the major change in
 
 To pass values from `<your-js-file>.js` to `server.R` you would have to write something like this,
 
-`<your-js-file>.js`
+<your-js-file>.js
 ```
 Shiny.onInputChange('variable_in_R', local_variable);
 ```
 
-`server.R`
+server.R
 ```
 observe({
     input$variable_in_R
