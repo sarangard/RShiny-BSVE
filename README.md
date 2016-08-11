@@ -16,7 +16,7 @@ The `.config` file for the RShiny app will have to include the following,
 This allows you to connect to the BSVE Data API with a developer account.
 You will need to get the API and Secret Keys from the developer site  under My Account -> Manage API Credentials and replace them below. Further details can be found [here](http://developer.bsvecosystem.net/wp/tutorials/api-documentation/)
 
-Enter this information in the `config.yaml` in the following format.
+Fill the following information in the `config.yaml` as follows,
 ```
 api_key : "API key"
 secret_key : "SECRET key"
@@ -33,6 +33,7 @@ token
 query_url <- ""
 GET(query_url, add_headers("harbinger-authentication" = token))
 ```
+
 
 #### Using Harbinger Authentication Ticket
 This allows you to connect to the BSVE Data API with User Credentials.
@@ -55,8 +56,77 @@ GET(query_url, add_headers("harbinger-auth-ticket" = ticket))
 	* old api
 	* new api
 	
+
 	
 # BSVE.API.js
 ## Intro
+## User Deatils
+This will allow you to get all the user information like
+	* First Name
+	* Last Name
+	* Email
+	* Role
+
+The `<your-js-file>.js` should include the following,
+```
+BSVE.init(function()
+{
+	//Receive User Details from BSVE.API.js
+	var user_details = BSVE.api.userData();
+	Shiny.onInputChange('user_details', userData);
+}
+````
+
+## Harbinger Authentication Ticket
+This will allow you to connect with the BSVE Data API using user authentication details.
+
+The `<your-js-file>.js` should include the following,
+```
+BSVE.init(function()
+{
+	//Receive Authentication Ticket from BSVE.API.js
+	var auth_ticket = BSVE.api.authTicket();
+	Shiny.onInputChange('authTicket', auth_ticket);
+}
+````
+
 ## Dossier Control
+You can add the Dossier Bar in your R Shiny app. For further references refer [here](http://developer.bsvecosystem.net/wp/tutorials/adding-the-dossier-bar/)
+
+The `<your-js-file>.js` should include the following,
+```
+BSVE.init(function()
+{
+    /*
+     * Dossier Control
+     */
+    BSVE.ui.dossierbar.create(function(status)
+  	{
+  	    // Updating "dataTableHTML" to hold dataTable from the browser window
+  	    $('.tab-pane.active .shiny-datatable-output .dataTables_scroll').each(function(){ dataTableHTML = $(this)[0].outerHTML; });
+
+  	    // Creating an "item" that can be tagged/stored in the dossier.
+  	    // Required parameters for "item" are 
+  	    //    dataSource, title, sourceDate, itemDetail[statusIconTpe, Description]
+  		  var item = 
+  		  {
+    			dataSource: 'Data Source Name',
+    			title: 'Item Title',
+    			sourceDate : BSVE.api.dates.yymmdd(Date.now()),
+    			itemDetail: 
+    			{
+    				statusIconType: 'Table',
+    				Description: dataTableHTML
+    			}
+  		  };
+  		
+  		  //If there is a table in dataTableHTML, only then tag the item.
+  		  if(dataTableHTML)
+  		  {
+        		// Tagging created item
+        		BSVE.api.tagItem(item, status);
+  		  }
+  	});
+}
+```
 ## Federated Search
