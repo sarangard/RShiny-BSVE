@@ -30,7 +30,7 @@ token <- bsve_sha1(api_key, secret_key, email)
 token
 [1] "apikey=AK521cff65-9815-48bc-a97c-27fd3f4cd58d;timestamp=1457989545992;nonce=535514;signature=f6b90ed483b37..."
 
-query_url <- ""
+query_url <- "https://api.bsvecosystem.net/data/v2/sources/"
 GET(query_url, add_headers("harbinger-authentication" = token))
 ```
 
@@ -39,11 +39,60 @@ GET(query_url, add_headers("harbinger-authentication" = token))
 This allows you to connect to the BSVE Data API with User Credentials. You will need to pass the Authentication Ticket received from the BSVE.
 
 ```
-query_url <- ""
+query_url <- "https://api.bsvecosystem.net/data/v2/sources/"
 GET(query_url, add_headers("harbinger-auth-ticket" = ticket))
 ```
 
 > Note: There are major changes in the BSVE Data API from v1 to v2. You might want to experiment the different endpoints first using a REST Client. More information can be found [here](http://developer.bsvecosystem.net/wp/tutorials/bsve-data-api/api-reference/)
+
+#### Get all Data Sources
+use `data/v2/sources` to view all the data sources.
+
+```
+  #Query URL and GET Request
+  query_url <- "https://api.bsvecosystem.net/data/v2/sources/"
+  query_response <- GET(query_url, add_headers("harbinger-authentication" = token))
+  
+  #Checking if the Request was successfull
+  if (http_status(query_response)$category != "Success") {
+    return()
+  } else {
+    query_content <- content(query_response)
+    query_result <- query_content$result
+    
+    # Converting query_Result into a dataframe
+    result_df <- do.call(rbind, query_result)
+    result_df <- as.data.frame(result_df)
+  }
+```
+
+
+#### Get data for a Data Source
+use `data/v2/sources/{dataSource}/data/result` to view all the data sources.
+
+```
+  #Query URL and GET Request
+  query_url <- paste0("https://api.bsvecosystem.net/data/v2/sources/", gsub(" ", "%20", data_source), "/data")
+  query_response <- GET(query_url, add_headers("harbinger-authentication" = token), timeout(300))
+  
+  #Checking if the Request was successfull
+  if (http_status(query_response)$category != "Success") {
+    return()
+  } else {
+    query_content <- content(query_response)
+    
+    #Checking if there was an error in getting the data source
+    if (!is.null(query_content$errors)) {
+      errors_df <- do.call(rbind, query_content$errors)
+      errors_df <- as.data.frame(errors_df)
+      errors_df		#errors_df is a dataframe
+    } else {
+      query_result <- query_content$result
+      query_result	#query_result is a list of lists
+    }
+  }
+```
+
 
 	
 # BSVE.API.js
