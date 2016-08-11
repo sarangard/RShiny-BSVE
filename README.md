@@ -63,6 +63,7 @@ It is very importatnt to note the major change in
 
 The BSVE.API.js can be found at this [link](https://developer.bsvecosystem.net/sdk/api/BSVE.API.js)
 This javascript file allows you to receive or send information to the BSVE Ecosystem. Few of the functionalities are listed below,
+
 	* Get User Information
 	* Get User Authentication Ticket
 	* Add Dossier Bar
@@ -103,6 +104,7 @@ observe({
 
 ## User Deatils
 This will allow you to get all the user information like
+
 	* First Name
 	* Last Name
 	* Email
