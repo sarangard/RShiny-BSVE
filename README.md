@@ -17,14 +17,14 @@ This allows you to connect to the BSVE Data API with a developer account.
 You will need to get the API and Secret Keys from the developer site  under My Account -> Manage API Credentials and replace them below. Further details can be found [here](http://developer.bsvecosystem.net/wp/tutorials/api-documentation/)
 
 
->All the configuration information is store in a `config.yaml` file. Fill the following information in `config.yaml` as follows,
+All the configuration information is store in a `config.yaml` file. Fill the following information in `config.yaml` as follows,
 ```
 api_key : "API key"
 secret_key : "SECRET key"
 email : "your@email"
 ```
 
->The `bsve_sha1` function creates the authentication header using the two keys and a valid email. 
+The `bsve_sha1` function creates the authentication header using the two keys and a valid email. 
 ```
 token <- bsve_sha1(api_key, secret_key, email)
 token
@@ -70,7 +70,7 @@ This javascript file allows you to receive or send information to the BSVE Ecosy
 	* Enable communication between different apps
 For a full list of what you can do refer [here](http://developer.bsvecosystem.net/wp/api-reference/)
 
->To use this javascript file you would have to create your own javascript file say `bsve.js` that calls the `BSVE.init()` function. Place `bsve.js` in a folder called `www`. Following should be the file structure for your app
+To use this javascript file you would have to create your own javascript file say `bsve.js` that calls the `BSVE.init()` function. Place `bsve.js` in a folder called `www`. Following should be the file structure for your app
 * RShiny-App
 	* ui.R
 	* server.R
@@ -78,7 +78,7 @@ For a full list of what you can do refer [here](http://developer.bsvecosystem.ne
 	* www
 		* bsve.js
 
->Your RShiny app you should have the following code in `ui.R`
+Your RShiny app you should have the following code in `ui.R`
 ```
   fluidRow(
     singleton(tags$head(tags$script(src="https://developer.bsvecosystem.net/sdk/api/BSVE.API.js")))
@@ -86,7 +86,7 @@ For a full list of what you can do refer [here](http://developer.bsvecosystem.ne
   ),
 ```
 
->To pass values from `your-js-file.js` to `server.R` you would have to write something like this,
+To pass values from `your-js-file.js` to `server.R` you would have to write something like this,
 
 your-js-file.js
 ```
