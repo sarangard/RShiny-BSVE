@@ -4,12 +4,12 @@ RShiny App that shows how you can use BSVE Data API and BSVE.API.js
 # BSVE Data API
 ## Intro
 #### Prerequisites
-You will need the following package, 
+You will need the following packages, 
+
 	* 'httr'
 	* 'yaml'
 
-The `.config` file for the RShiny app will have to include the following,
-	* 
+Make sure to add them to your `.config` file.
 
 ## How to use in R Shiny
 #### Using API Access Keys
@@ -44,7 +44,8 @@ query_url <- ""
 GET(query_url, add_headers("harbinger-auth-ticket" = ticket))
 ```
 
-#### Listing Data Sources 
+#### Listing Data Sources
+It is very importatnt to note the major change in 
 	* old api
 	* new api
 
@@ -60,6 +61,25 @@ GET(query_url, add_headers("harbinger-auth-ticket" = ticket))
 	
 # BSVE.API.js
 ## Intro
+
+
+
+
+To pass values from `<your-js-file>.js` to `server.R` you would have to write something like this,
+
+`<your-js-file>.js`
+```
+Shiny.onInputChange('variable_in_R', local_variable);
+```
+
+`server.R`
+```
+observe({
+    input$variable_in_R
+    //YOUR CODE
+})
+```
+
 ## User Deatils
 This will allow you to get all the user information like
 	* First Name
@@ -74,7 +94,7 @@ BSVE.init(function()
 	//Receive User Details from BSVE.API.js
 	var user_details = BSVE.api.userData();
 	Shiny.onInputChange('user_details', userData);
-}
+});
 ````
 
 ## Harbinger Authentication Ticket
@@ -87,7 +107,7 @@ BSVE.init(function()
 	//Receive Authentication Ticket from BSVE.API.js
 	var auth_ticket = BSVE.api.authTicket();
 	Shiny.onInputChange('authTicket', auth_ticket);
-}
+});
 ````
 
 ## Dossier Control
@@ -127,6 +147,27 @@ BSVE.init(function()
         		BSVE.api.tagItem(item, status);
   		  }
   	});
-}
+});
 ```
+
+
 ## Federated Search
+This allows you to perform a search within your app.
+
+The `<your-js-file>.js` should include the following,
+```
+BSVE.init(function()
+{
+  /*
+   * Federated Search
+   */
+  BSVE.api.search.submit(function(query)
+    {
+      if(query.term)
+      {
+          Shiny.onInputChange('search_query', query.term);
+      }
+    },true,true,true);
+
+});
+```
