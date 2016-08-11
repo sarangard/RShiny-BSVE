@@ -43,19 +43,7 @@ query_url <- ""
 GET(query_url, add_headers("harbinger-auth-ticket" = ticket))
 ```
 
-#### Listing Data Sources
-It is very importatnt to note the major change in 
-	* old api
-	* new api
-
-#### Listing Data Source Types
-	* old api
-	* new api
-
-#### Data Sources
-	* old api
-	* new api
-	
+> Note: There are major changes in the BSVE Data API from v1 to v2. You might want to experiment the different endpoints first using a REST Client. More information can be found [here](http://developer.bsvecosystem.net/wp/tutorials/bsve-data-api/api-reference/)
 
 	
 # BSVE.API.js
@@ -148,6 +136,7 @@ BSVE.init(function()
      */
     BSVE.ui.dossierbar.create(function(status)
   	{
+  	    var dataTableHTML;
   	    // Updating "dataTableHTML" to hold dataTable from the browser window
   	    $('.tab-pane.active .shiny-datatable-output .dataTables_scroll').each(function(){ dataTableHTML = $(this)[0].outerHTML; });
 
@@ -194,7 +183,6 @@ BSVE.init(function()
       {
           Shiny.onInputChange('search_query', query.term);
       }
-    },true,true,true);
-
+    });
 });
 ```
