@@ -154,7 +154,7 @@ BSVE.init(function()
 {
 	//Receive User Details from BSVE.API.js
 	var user_details = BSVE.api.userData();
-	Shiny.onInputChange('user_details', userData);
+	Shiny.onInputChange('userData', user_details);
 });
 ````
 
