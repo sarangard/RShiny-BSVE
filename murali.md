@@ -90,8 +90,8 @@ private ResourceInfo buildResourceInfo(HttpServletRequest request) {
 }
 ```
 
-# Authentication ticket retrieved from "harbinger-auth-ticket" header parameter from Http Request & value has been set into Resource Info DTO and transferred to service layer
-# From Service Layer, Data API Request has been invoked with retrieved data source name & auth ticket
+	* Authentication ticket retrieved from "harbinger-auth-ticket" header parameter from Http Request & value has been set into Resource Info DTO and transferred to service layer
+	* From Service Layer, Data API Request has been invoked with retrieved data source name & auth ticket
 
 ##### 3. Viewing Data in jqGrid Table with dynamic data column & jqGrid UI Controls
 
@@ -167,9 +167,9 @@ var addOptions = {
 	}
 };
 ```		
-# On click on submit button in add record model panel, it trigger "onclickSubmit" method to send request to server with the data. The new record has been converted into json format.
-# Server retrives the data into Gson Document
-# The document will be converted into json arrays before posting to Data API request
+	* On click on submit button in add record model panel, it trigger "onclickSubmit" method to send request to server with the data. The new record has been converted into json format.
+	* Server retrives the data into Gson Document
+	* The document will be converted into json arrays before posting to Data API request
 ```
 @RequestMapping(value = "/data/{dataSource}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ServiceResponse<String> addData(HttpServletRequest request,
@@ -253,9 +253,9 @@ afterComplete : function(data) {
 };
 ```		
 
-# On click on submit button in update record model panel, it trigger "onclickSubmit" method to send request to server with the data. The updated record has been converted into json format.
-# Server retrives the data into Gson Document
-# Invoke Data API request to update the data
+	* On click on submit button in update record model panel, it trigger "onclickSubmit" method to send request to server with the data. The updated record has been converted into json format.
+	* Server retrives the data into Gson Document
+	* Invoke Data API request to update the data
 
 ```
 @RequestMapping(value = "/data/{dataSource}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -335,8 +335,8 @@ afterComplete : function(data) {
 };
 ```		
 
-# On click on submit button in delete record model panel, it trigger "onclickSubmit" method to send request to server with the data. 
-# Invoke Data API request to delete a data
+	* On click on submit button in delete record model panel, it trigger "onclickSubmit" method to send request to server with the data. 
+	* Invoke Data API request to delete a data
 
 ```
 @RequestMapping(value = "/data/{dataSource}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
