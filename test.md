@@ -119,3 +119,22 @@ BSVE.init(function()
 	Shiny.onInputChange('authTicket', auth_ticket);
 });
 ```
+
+The `server.R` should include the following,
+```
+shinyServer(function(input, output, session) {
+  #auth ticket received from BSVE Client
+  ticket <- ""
+  
+  ## Receive user auth ticket from bsve.js ##
+  observe({
+    if (is.null(input$authTicket)) {
+      return()
+    } else {
+      #Auth Ticket received
+      ticket <<- input$authTicket
+    }
+  })
+```
+
+The variable `ticket` can now be used throughout `server.R`
