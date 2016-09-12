@@ -117,7 +117,7 @@ $("#fieldRawDataList").jqGrid({
 });
 ```
 
-Defining pagination & Create, Update and Delete icon controls in tabel footer
+Defining pagination & Create, Update and Delete icon controls in table footer
 
 ```
 $("#fieldRawDataList").jqGrid('navGrid', '#fieldRawDataPager', {}, // options
